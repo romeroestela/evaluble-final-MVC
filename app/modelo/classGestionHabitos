@@ -1,0 +1,34 @@
+<?php
+
+class GestionHabitos extends Modelo {
+    
+    //Método para insertar un usuario
+    public function insertarUsuario($nombre, $apellido, $nombreUsuario, $contrasenya, $nivel_usuario, $foto_perfil = null) {
+        
+        $foto_perfil = $foto_perfil ?? '/public/images/default_profile.jpg'; // Foto por defecto si no se proporciona
+        
+        $consulta = "INSERT INTO usuarios (nombre, apellido, nombreUsuario, contrasenya, nivel_usuario, foto_perfil) 
+                     VALUES (:nombre, :apellido, :nombreUsuario, :contrasenya, :nivel_usuario, :foto_perfil)";
+        
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':nombre', $nombre);
+        $result->bindParam(':apellido', $apellido);
+        $result->bindParam(':nombreUsuario', $nombreUsuario);
+        $result->bindParam(':contrasenya', password_hash($contrasenya, PASSWORD_DEFAULT));
+        $result->bindParam(':nivel_usuario', $nivel_usuario);
+        $result->bindParam(':foto_perfil', $foto_perfil);
+        $result->execute();
+        return $result;
+    }
+
+    // Consultar usuario por nombre de usuario
+    public function consultarUsuario($nombreUsuario) {
+        $consulta = "SELECT * FROM usuarios WHERE nombreUsuario = :nombreUsuario";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':nombreUsuario', $nombreUsuario);
+        $result->execute();
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+?>

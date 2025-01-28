@@ -30,13 +30,14 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 
 ### Desarrollo del Modelo (M de MVC)
 1. Crear clases de modelo para la gestión de datos.
+    - [X] Crear fichero `classModel.php`. La clase Modelo manejará la conexión a la base de datos y puede incluir métodos genéricos que sean útiles para cualquier entidad.
     - [ ] Definir atributos y métodos CRUD. 
 2. Implementar métodos CRUD para cada entidad.
     - [ ] Crear métodos `create`, `read`, `update`, `delete` para cada tabla.
 
 ### Desarrollo del Controlador (C de MVC)
 1. Crear controladores para manejar la lógica.
-    - [ ] Definir funciones para gestionar usuarios.
+    - [X] Definir funciones para gestionar usuarios.
     - [ ] Definir funciones para registrar actividades deportivas.
     - [ ] Definir funciones para registrar comidas saludables.
 2. Implementar funcionalidad de registro e inicio de sesión.
