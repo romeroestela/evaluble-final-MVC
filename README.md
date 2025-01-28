@@ -13,11 +13,11 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 
 ### Configuración Inicial
 1. Crear un repositorio en GitHub y añadir a la profesora.
-    - [ ] Crear repositorio.
-    - [ ] Añadir usuario de la profesora.
+    - [X] Crear repositorio.
+    - [X] Añadir usuario de la profesora.
 2. Crear la estructura base del proyecto.
     - [ ] Crear carpetas: `app`, `controlador`, `libs`, `log`, `modelo`, `web`, `css`, `templates`,.
-    - [ ] Configurar archivo `.gitignore`.
+    - [X] Configurar archivo `.gitignore`.
 
 ### Base de Datos
 1. Diseñar la estructura de la base de datos con al menos 3 tablas relacionadas.
@@ -64,6 +64,7 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
     - [ ] Implementar carga de fotos para perfil y comidas.
 2. Implementar mensajes de feedback para los usuarios.
     - [ ] Mostrar mensajes de error.
+    - [ ] Crear pantalla genérica de error.
 
 ### Estilizado y Presentación
 1. Aplicar CSS básico para el diseño.
