@@ -31,25 +31,30 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 ### Desarrollo del Modelo (M de MVC)
 1. Crear clases de modelo para la gestión de datos.
     - [X] Crear fichero `classModel.php`. La clase Modelo manejará la conexión a la base de datos y puede incluir métodos genéricos que sean útiles para cualquier entidad.
-    - [ ] Definir atributos y métodos CRUD. 
-2. Implementar métodos CRUD para cada entidad.
-    - [ ] Crear métodos `create`, `read`, `update`, `delete` para cada tabla.
 
 ### Desarrollo del Controlador (C de MVC)
 1. Crear controladores para manejar la lógica.
     - [X] Definir funciones para gestionar usuarios.
-    - [ ] Definir funciones para registrar actividades deportivas.
-    - [ ] Definir funciones para registrar comidas saludables.
+    - [x] Definir funciones para registrar actividades deportivas.
+    - [x] Definir funciones para registrar comidas saludables.
 2. Implementar funcionalidad de registro e inicio de sesión.
-    - [ ] Crear formulario de registro.
-    - [ ] Procesar datos y guardar en BD.
+    - [ ] Procesar datos del formulario de registro y guardar en BD.
+    - [ ] Procesar datos del formulario de inicio de sesión (validar credenciales).
 
 ### Desarrollo de las Vistas (V de MVC)
-1. Diseñar plantillas HTML para la zona pública.
-    - [ ] Crear páginas de bienvenida y navegación.
-2. Diseñar plantillas HTML para la zona privada.
-    - [ ] Crear dashboard de usuario con resumen de actividades y comidas.
-    - [ ] Mostrar nombre e imagen de perfil del usuario logueado.
+1. Templates base (estructuras comunes para varias páginas):
+    - [x] layout.php (estructura principal). 
+    - [ ] menuInvitado.php, menuUsuario.php y menuAdmin.php (navegación según usuario).
+2. Vistas públicas:
+    - [ ] inicio.php (página principal).
+    - [ ] registro.php (formulario de registro).
+3. Vistas privadas:
+    - [ ] perfil.php (ver y editar información del usuario). 
+    - [ ] ver_actividades.php (lista de actividades del usuario).
+    - [ ] ver_comidas.php (lista de comidas del usuario).
+    - [ ] buscar_por_fecha.php (buscar actividades y comidas por fecha).
+4. Plantillas especiales:
+    - [ ] error.php (pantalla de error).
 
 ### Seguridad
 1. Implementar validación de formularios en el lado del servidor.
@@ -79,15 +84,14 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
     - [ ] Corregir errores y mejorar del código.
 
 ## Instalación y Uso
-1. Clonar el repositorio: `git clone <URL_DEL_REPOSITORIO>`
-2. Configurar la base de datos importando el archivo `database.sql`
-3. Configurar las credenciales de conexión en `config/database.php`
+1. Clonar el repositorio: `git clone https://github.com/romeroestela/evaluble-final-MVC.git`
+2. Configurar la base de datos importando el archivo ` habitos_saludables.sql`
+3. Configurar las credenciales de conexión en `config/habitos_saludables.php`
 4. Ejecutar el servidor local y acceder a la aplicación
 
 ## Extras
 - Incluir breve descripción explicando que hace la aplicación. 
 - El código incluye comentarios para facilitar su comprensión.
-- La documentación del proyecto está incluida en la carpeta `docs`.
 
 ## Estela Romero Ferri
 

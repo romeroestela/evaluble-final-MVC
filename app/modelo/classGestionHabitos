@@ -47,8 +47,8 @@ class GestionHabitos extends Modelo {
 
     // Método para registrar comida
     public function registrarComida($idUser, $nombre, $calorias, $foto, $fecha) {
-        $consulta = "INSERT INTO comidas (idUser, nombre, calorias, foto, fecha)
-                     VALUES (:idUser, :nombre, :calorias, :foto, :fecha)";
+        $consulta = "INSERT INTO comidas (idUser, nombre, calorias, foto_comida, fecha)
+                     VALUES (:idUser, :nombre, :calorias, :foto_comida, :fecha)";
 
         // Si no se sube una imagen, se usa la imagen por defecto
         $foto = $foto ?? '/web/imagenes/default_food.jpg';
@@ -57,7 +57,7 @@ class GestionHabitos extends Modelo {
         $result->bindParam(':idUser', $idUser);
         $result->bindParam(':nombre', $nombre);
         $result->bindParam(':calorias', $calorias);
-        $result->bindParam(':foto', $foto);
+        $result->bindParam(':foto_comida', $foto);
         $result->bindParam(':fecha', $fecha);
         $result->execute();
         return $result;
