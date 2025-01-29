@@ -5,7 +5,7 @@ class GestionHabitos extends Modelo {
     //Método para insertar un usuario
     public function insertarUsuario($nombre, $apellido, $nombreUsuario, $contrasenya, $nivel_usuario, $foto_perfil = null) {
         
-        $foto_perfil = $foto_perfil ?? '/public/images/default_profile.jpg'; // Foto por defecto si no se proporciona
+        $foto_perfil = $foto_perfil ?? '/web/imagenes/default_profile.jpg'; // Foto por defecto si no se proporciona
         
         $consulta = "INSERT INTO usuarios (nombre, apellido, nombreUsuario, contrasenya, nivel_usuario, foto_perfil) 
                      VALUES (:nombre, :apellido, :nombreUsuario, :contrasenya, :nivel_usuario, :foto_perfil)";
@@ -29,6 +29,41 @@ class GestionHabitos extends Modelo {
         $result->execute();
         return $result->fetch(PDO::FETCH_ASSOC);
     }
+
+    // Método para registrar actividad
+    public function registrarActividad($idUser, $tipo, $duracion, $calorias, $fecha) {
+        $consulta = "INSERT INTO actividades (idUser, tipo, duracion, calorias, fecha)
+                     VALUES (:idUser, :tipo, :duracion, :calorias, :fecha)";
+        
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':idUser', $idUser);
+        $result->bindParam(':tipo', $tipo);
+        $result->bindParam(':duracion', $duracion);
+        $result->bindParam(':calorias', $calorias);
+        $result->bindParam(':fecha', $fecha);
+        $result->execute();
+        return $result;
+    }
+
+    // Método para registrar comida
+    public function registrarComida($idUser, $nombre, $calorias, $foto, $fecha) {
+        $consulta = "INSERT INTO comidas (idUser, nombre, calorias, foto, fecha)
+                     VALUES (:idUser, :nombre, :calorias, :foto, :fecha)";
+
+        // Si no se sube una imagen, se usa la imagen por defecto
+        $foto = $foto ?? '/web/imagenes/default_food.jpg';
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':idUser', $idUser);
+        $result->bindParam(':nombre', $nombre);
+        $result->bindParam(':calorias', $calorias);
+        $result->bindParam(':foto', $foto);
+        $result->bindParam(':fecha', $fecha);
+        $result->execute();
+        return $result;
+    }
+    
+    
 }
 
 ?>
