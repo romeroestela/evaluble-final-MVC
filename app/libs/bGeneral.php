@@ -401,4 +401,26 @@ function crypt_blowfish($password) {
     
     return $pass;
     }
+
+    function gestionarImagenPerfil(string $nombreCampo, string $directorio, array &$errores)
+    {
+        // Verificar si se ha subido una imagen
+        if (isset($_FILES[$nombreCampo]) && $_FILES[$nombreCampo]['error'] === UPLOAD_ERR_OK) {
+            // Obtener la información del archivo
+            $fotoTmpPath = $_FILES[$nombreCampo]['tmp_name'];
+            $fotoNombre = basename($_FILES[$nombreCampo]['name']);
+            $fotoDestino = $directorio . "/" . $fotoNombre;
+
+            // Mover el archivo al directorio deseado
+            if (move_uploaded_file($fotoTmpPath, $fotoDestino)) {
+                return $fotoDestino;
+            } else {
+                $errores[] = "Error al subir la imagen.";
+                return false;
+            }
+        } else {
+            // Si no se ha subido imagen, retornar la imagen por defecto
+            return "web/imagenes/default_profile.jpg";
+        }
+    }
     ?>
