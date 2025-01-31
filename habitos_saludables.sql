@@ -27,27 +27,35 @@ USE `habitos_saludables`;
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
-    `idUser` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombre` VARCHAR(100) NOT NULL,
-    `apellido` varchar(100) NOT NULL,
-    `nombreUsuario` varchar(40) CHARACTER SET utf8 COLLATE, 
-    `contrasenya` VARCHAR(255) NOT NULL,
-    `nivel_usuario` int(11) NOT NULL DEFAULT 1,
-    `foto_perfil` VARCHAR(255) DEFAULT NULL, -- Ruta o URL de la foto de perfil
-    PRIMARY KEY (idUser)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+CREATE TABLE `usuarios` (
+  `idUser` int(11) NOT NULL,
+  `nombre` varchar(40) NOT NULL,
+  `apellido` varchar(40) NOT NULL,
+  `nombreUsuario` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `contrasenya` varchar(256) NOT NULL,
+  `nivel_usuario` int(11) NOT NULL DEFAULT 1,
+  `foto_perfil` VARCHAR(255) DEFAULT NULL -- Ruta o URL de la foto de perfil
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`idUser`),
+  ADD UNIQUE KEY `uk_nombreUsuario` (`nombreUsuario`);
+
+ALTER TABLE `usuarios`
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+COMMIT;
 
 --
 -- Estructura de tabla para la tabla `actividades`
 --
 
-CREATE TABLE IF NOT EXISTS `actividades` (
-    `idActividad` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idUser` INT(11) NOT NULL,
-    `tipo` VARCHAR(100) NOT NULL,
-    `duracion` INT(11) NOT NULL,  -- Duración en minutos
-    `calorias` INT(11) NOT NULL,  -- Calorías quemadas
+CREATE TABLE `actividades` (
+    `idActividad` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `idUser` int(11) NOT NULL,
+    `tipo` varchar(100) NOT NULL,
+    `duracion` int(11) NOT NULL,  -- Duración en minutos
+    `calorias` int(11) NOT NULL,  -- Calorías quemadas
     `fecha` DATE NOT NULL,
     FOREIGN KEY (`idUser`) REFERENCES `usuarios`(`idUser`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -56,13 +64,13 @@ CREATE TABLE IF NOT EXISTS `actividades` (
 -- Estructura de tabla para la tabla `comidas`
 --
 
-CREATE TABLE IF NOT EXISTS `comidas` (
-    `idComida` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idUser` INT(11) NOT NULL,
-    `nombre` VARCHAR(255) NOT NULL,
-    `calorias` INT(11) NOT NULL,  -- Calorías de la comida
-    `foto_comida` VARCHAR(255) DEFAULT NULL,  -- Ruta o URL de la foto de la comida
-    `fecha` DATE NOT NULL,
+CREATE TABLE `comidas` (
+    `idComida` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `idUser` int(11) NOT NULL,
+    `nombre` varchar(255) NOT NULL,
+    `calorias` int(11) NOT NULL,  -- Calorías de la comida
+    `foto_comida` varchar(255) DEFAULT NULL,  -- Ruta o URL de la foto de la comida
+    `fecha` date NOT NULL,
     FOREIGN KEY (`idUser`) REFERENCES `usuarios`(`idUser`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

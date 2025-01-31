@@ -1,36 +1,81 @@
 
 <?php
 $menu = null; // Evita que se cargue menuInvitado.php
-ob_start(); //Inicia el buffer de salida (almacena la salida en memoria en lugar de enviarla directamente al navegador) 
+ob_start(); 
 ?>
 
-<div class="container text-center p-4">
-    <h1 class="h1Inicio">REGISTRARSE</h1>
-</div>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+        <div class="text-center mb-4">
+            <h2 class="text-success">Registrarse</h2>
+            <p class="text-muted">Crea tu cuenta y empieza a gestionar tus hábitos</p>
+        </div>
 
-<div class="container text-center py-2">
-    <?php if(isset($params['mensaje'])) : ?>
-        <b><span style="color: rgba(200, 119, 119, 1);"><?php echo $params['mensaje'] ?></span></b>
-    <?php endif; ?>
+        <!-- Mensajes de error -->
+        <?php if(isset($params['mensaje'])): ?>
+            <div class="alert alert-danger text-center">
+                <?php echo $params['mensaje']; ?>
+            </div>
+        <?php endif; ?>
 
-    <?php foreach ($errores as $error) : ?>
-        <b><span style="color: rgba(200, 119, 119, 1);"><?php echo $error."<br>"; ?></span></b>
-    <?php endforeach; ?>
-</div>
+        <?php foreach ($errores as $error): ?>
+            <div class="alert alert-warning text-center">
+                <?php echo $error; ?>
+            </div>
+        <?php endforeach; ?>
 
-<div class="container text-center p-1">
-    <form action="index.php?ctl=registro" method="post" name="formRegistro">
-        <p>* <input type="text" name="nombre" value="<?php echo $params['nombre'] ?>" placeholder="Nombre"></p>
-        <p>* <input type="text" name="apellido" value="<?php echo $params['apellido'] ?>" placeholder="Apellido"></p>
-        <p>* <input type="text" name="nombreUsuario" value="<?php echo $params['nombreUsuario'] ?>" placeholder="Nombre de usuario"></p>
-        <p>* <input type="password" name="contrasenya" value="<?php echo $params['contrasenya'] ?>" placeholder="Contraseña"></p>
-        <input type="submit" name="bRegistro" value="Aceptar">
-    </form>
-</div>
+        <!-- Formulario de Registro -->
+        <form action="index.php?ctl=registro" method="post" name="formRegistro" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" name="nombre" value="<?php echo $params['nombre'] ?? ''; ?>" placeholder="Nombre">
+                </div>
+            </div>
 
-<div class="container text-center">
-    <a href="index.php?ctl=home" class="btn btn-success">Volver al inicio</a>
-    <a href="index.php?ctl=iniciarSesion" class="btn btn-success">Ya estoy registrado</a>
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" name="apellido" value="<?php echo $params['apellido'] ?? ''; ?>" placeholder="Apellido">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre de usuario</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                    <input type="text" class="form-control" name="nombreUsuario" value="<?php echo $params['nombreUsuario'] ?? ''; ?>" placeholder="Nombre de usuario">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form-control" name="contrasenya" placeholder="Contraseña">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Foto de perfil (opcional)</label>
+                <input type="file" class="form-control" name="foto_perfil" accept="image/*">
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" name="bRegistro" class="btn btn-success">Registrarse</button>
+            </div>
+        </form>
+
+        <!-- Enlaces adicionales -->
+        <div class="text-center mt-3">
+            <a href="index.php?ctl=iniciarSesion" class="text-decoration-none">Ya tengo una cuenta</a>
+        </div>
+        <div class="text-center mt-2">
+            <a href="index.php?ctl=home" class="text-decoration-none text-secondary">Volver al inicio</a>
+        </div>
+    </div>
 </div>
 
 <?php

@@ -1,4 +1,5 @@
 <?php ob_start();
+$menu = null;
 if (isset($params['mensaje'])) {
 ?>
 <b><span style="color: rgba(200, 119, 119, 1);">
