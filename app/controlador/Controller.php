@@ -220,7 +220,7 @@ class Controller
                 }
             }
 
-            require __DIR__ . '/../../web/templates/formInsertarActividad.php';
+            require __DIR__ . '/../../web/templates/formInsertarComida.php';
 
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
@@ -336,6 +336,45 @@ class Controller
         }
     }
 
+    public function buscarPorFecha()
+    {
+        try {
+            $params = array(
+                'fecha' => '',
+                'comidas' => [],
+                'actividades' => [],
+            );
+
+            $errores = array();
+
+            if (isset($_POST['bBuscarFecha'])) {
+                $fecha = recoge('fecha');
+
+                // Validar la fecha
+                unixFechaAAAAMMDD($fecha, "fecha", $errores);
+
+                if (empty($errores)) {
+                    $m = new GestionHabitos();
+                    $params['comidas'] = $m->obtenerComidasPorFecha($_SESSION['idUser'], $fecha);
+                    $params['actividades'] = $m->obtenerActividadesPorFecha($_SESSION['idUser'], $fecha);
+
+                    if (empty($params['comidas']) && empty($params['actividades'])) {
+                        $params['mensaje'] = 'No hay registros de comidas o actividades en esta fecha.';
+                    }
+                } else {
+                    $params['mensaje'] = 'Fecha inválida. Revisa el formulario.';
+                }
+
+                $params['fecha'] = $fecha;
+            }
+
+            require __DIR__ . '/../../web/templates/buscarPorFecha.php';
+
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
+            header('Location: index.php?ctl=error');
+        }
+    }
 
 
 }

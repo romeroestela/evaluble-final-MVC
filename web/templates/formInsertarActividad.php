@@ -18,7 +18,8 @@
     <div class="container">
         <h2>Registrar Actividad</h2>
         <form action="index.php?ctl=insertarActividad" method="post" enctype="multipart/form-data">
-            <!-- Tipo de Actividad -->
+            
+        <!-- Tipo de Actividad -->
             <div class="mb-3">
                 <label for="tipo" class="form-label">Tipo de la actividad</label>
                 <input type="text" name="tipo" class="form-control" placeholder="Carrera" required>
@@ -37,13 +38,15 @@
             </div>
 
         
-            <!-- Fecha de la comida -->
+            <!-- Fecha de la Actividad -->
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha de la Actividad</label>
                 <input type="date" name="fecha" class="form-control" required>
             </div>
 
             <button type="submit" name="bInsertarActividad" class="btn btn-success">Registrar Actividad</button>
+            <?php include 'volverMenu.php'; ?>
+
         </form>
     </div>
 </div>

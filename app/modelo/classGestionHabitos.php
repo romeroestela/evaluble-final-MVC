@@ -95,6 +95,28 @@ class GestionHabitos extends Modelo {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Obtener comidas por fecha
+    public function obtenerComidasPorFecha($idUser, $fecha)
+    {
+        $consulta = "SELECT * FROM habitos_saludables.comidas WHERE idUser = :idUser AND fecha = :fecha";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':idUser', $idUser);
+        $result->bindParam(':fecha', $fecha);
+        $result->execute();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Obtener actividades por fecha
+    public function obtenerActividadesPorFecha($idUser, $fecha)
+    {
+        $consulta = "SELECT * FROM habitos_saludables.actividades WHERE idUser = :idUser AND fecha = :fecha";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':idUser', $idUser);
+        $result->bindParam(':fecha', $fecha);
+        $result->execute();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 
 ?>

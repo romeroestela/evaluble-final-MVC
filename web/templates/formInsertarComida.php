@@ -43,6 +43,9 @@
             </div>
 
             <button type="submit" name="bInsertarComida" class="btn btn-success">Registrar Comida</button>
+            <?php include 'volverMenu.php'; ?>
+
+
         </form>
     </div>
 </div>

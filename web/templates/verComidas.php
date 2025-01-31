@@ -25,6 +25,9 @@
             </div>
         <?php endforeach; ?>
     </div>
+
+    <?php include 'volverMenu.php'; ?>
+
 </div>
 
 <?php $contenido = ob_get_clean(); ?>
