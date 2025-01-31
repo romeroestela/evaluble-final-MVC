@@ -35,9 +35,7 @@ if (isset($_GET['ctl'])) {
         echo '<html><body><h1>Error 404: No existe la ruta <i>' .
             $_GET['ctl'] . '</p></body></html>';
         exit;
-        /*
-             * También podríamos poner $ruta=error; y mostraríamos una pantalla de error
-             */
+    
     }
 } else {
     $ruta = 'home';

@@ -44,17 +44,19 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 ### Desarrollo de las Vistas (V de MVC)
 1. Templates base (estructuras comunes para varias páginas):
     - [x] layout.php (estructura principal). 
-    - [ ] menuInvitado.php, menuUsuario.php y menuAdmin.php (navegación según usuario).
+    - [x] menuInvitado.php, menuUsuario.php y menuAdmin.php (navegación según usuario).
 2. Vistas públicas:
-    - [ ] inicio.php (página principal).
-    - [ ] registro.php (formulario de registro).
+    - [x] inicio.php (página principal).
+    - [x] registro.php (formulario de registro).
 3. Vistas privadas:
-    - [ ] perfil.php (ver y editar información del usuario). 
-    - [ ] ver_actividades.php (lista de actividades del usuario).
-    - [ ] ver_comidas.php (lista de comidas del usuario).
-    - [ ] buscar_por_fecha.php (buscar actividades y comidas por fecha).
+    - [x] perfil.php (ver y editar información del usuario). 
+    - [x] insertarComida.php (Formulario para insertar Comida).
+    - [x] insertarActividad.php (Formulario para insertar Actividad).
+    - [x] verActividades.php (lista de actividades del usuario).
+    - [x] verComidas.php (lista de comidas del usuario).
+    - [] buscar_por_fecha.php (buscar actividades y comidas por fecha).
 4. Plantillas especiales:
-    - [ ] error.php (pantalla de error).
+    - [X] error.php (pantalla de error).
 
 ### Seguridad
 1. Implementar validación de formularios en el lado del servidor.

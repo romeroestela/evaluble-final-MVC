@@ -255,7 +255,7 @@ class Controller
         }
     }
 
-    public function insertarActividades()
+    public function insertarActividad()
     {
         try {
             $params = array(
@@ -320,24 +320,22 @@ class Controller
     public function verActividades()
     {
         try {
-            // Obtener las comidas registradas del usuario
             $m = new GestionHabitos();
-            $comidas = $m->obtenerComidas($_SESSION['idUser']);
+            $actividades = $m->obtenerActividades($_SESSION['idUser']);
             
-            // Verifica si existen comidas
-            if (empty($comidas)) {
-                $params['mensaje'] = 'No has registrado comidas aún.';
+            if (empty($actividades)) {
+                $params['mensaje'] = 'No has registrado actividades aún.';
             } else {
-                $params['comidas'] = $comidas;
+                $params['actividades'] = $actividades;
             }
             
-            // Cargar la vista de ver comidas
             require __DIR__ . '/../../web/templates/verActividades.php';
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
         }
     }
+
 
 
 }
