@@ -74,3 +74,36 @@ CREATE TABLE `comidas` (
     FOREIGN KEY (`idUser`) REFERENCES `usuarios`(`idUser`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+--
+-- Insertar el usuario Admin
+--
+
+INSERT INTO `usuarios` (`idUser`, `nombre`, `apellido`, `nombreUsuario`, `contrasenya`, `nivel_usuario`, `foto_perfil`) 
+VALUES (NULL, 'Admin', 'Admin', 'Admin', '$2y$10$VXc8bOhO5XSCbKY73XYwGuYhTbAcetq3gy.EYqqQ0hZ5jthSfb6pO', '2', 'imagenes/default_admin.jpg')
+
+--
+-- Estructura de tabla para la tabla `recetas`
+--
+
+CREATE TABLE `recetas` (
+    `idReceta` INT(11) AUTO_INCREMENT PRIMARY KEY,
+    `titulo` VARCHAR(255) NOT NULL,
+    `ingredientes` TEXT NOT NULL,
+    `instrucciones` TEXT NOT NULL,
+    `imagen` VARCHAR(255) NOT NULL,  -- La imagen es obligatoria
+    `fecha_publicacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO recetas (titulo, ingredientes, instrucciones, imagen) VALUES 
+('Ensalada César', 'Lechuga, pollo, croutones, queso parmesano, aderezo César', 
+'1. Cortar la lechuga y el pollo. 2. Añadir croutones y queso. 3. Mezclar con aderezo.', 
+'imagenes_recetas/ensalada_cesar.jpg'),
+
+('Batido de Fresas', 'Fresas, leche, miel, yogur', 
+'1. Lavar las fresas. 2. Licuar con leche, miel y yogur. 3. Servir frío.', 
+'imagenes_recetas/batido_fresas.jpg'),
+
+('Avena con Frutas', 'Avena, leche, plátano, fresas, miel', 
+'1. Cocinar la avena con leche. 2. Agregar frutas y miel. 3. Mezclar y servir.', 
+'imagenes_recetas/avena_frutas.jpg');

@@ -34,7 +34,6 @@ class Controller
     public function inicio()
     {
         $params = array(
-            'mensaje' => 'Registra tus actividades y comidas para mejorar tu salud',
             'fecha' => date('d-m-Y')
         );
 
@@ -376,6 +375,100 @@ class Controller
         }
     }
 
+    // Método para comprobar que el usuario es administrador
+    private function verificarAdmin()
+    {
+        if (!isset($_SESSION['nivel_usuario']) || $_SESSION['nivel_usuario'] != 2) {
+            header("Location: index.php?ctl=home");
+            exit();
+        }
+    }
+
+    public function verTodasComidas()
+    {
+        try {
+            $this->verificarAdmin();
+
+            $m = new GestionHabitos();
+            $comidas = $m->obtenerTodasComidas();
+
+            $params['comidas'] = $comidas ?: [];
+        } catch (Exception $e) {
+            error_log($e->getMessage(), 3, "../app/log/logException.txt");
+            header('Location: index.php?ctl=error');
+            exit();
+        }
+
+        require __DIR__ . '/../../web/templates/verTodasComidas.php';
+    }
+
+    public function verTodasActividades()
+    {
+        try {
+            $this->verificarAdmin();
+
+            $m = new GestionHabitos();
+            $actividades = $m->obtenerTodasActividades();
+
+            $params['actividades'] = $actividades ?: [];
+        } catch (Exception $e) {
+            error_log($e->getMessage(), 3, "../app/log/logException.txt");
+            header('Location: index.php?ctl=error');
+            exit();
+        }
+
+        require __DIR__ . '/../../web/templates/verTodasActividades.php';
+    }
+
+    public function verRecetas()
+    {
+        try {
+            $m = new GestionHabitos();
+            $recetas = $m->obtenerRecetas();
+
+            $params = ['recetas' => $recetas];
+
+            require __DIR__ . '/../../web/templates/verRecetas.php';
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
+            header('Location: index.php?ctl=error');
+        }
+    }
+
+    public function insertarReceta()
+    {
+        if ($_SESSION['nivel_usuario'] != 2) {
+            header("location:index.php?ctl=home");
+            exit;
+        }
+
+        $params = ['titulo' => '', 'ingredientes' => '', 'instrucciones' => ''];
+        $errores = [];
+
+        if (isset($_POST['bInsertarReceta'])) {
+            $titulo = recoge('titulo');
+            $ingredientes = recoge('ingredientes');
+            $instrucciones = recoge('instrucciones');
+            $imagen = gestionarImagenRecetas('imagen', "imagenes_recetas", $errores);
+
+            cTexto($titulo, "Título", $errores);
+            cTexto($ingredientes, "Ingredientes", $errores);
+            cTexto($instrucciones, "Instrucciones", $errores);
+
+            if (empty($errores)) {
+                $m = new GestionHabitos();
+                if ($m->insertarReceta($titulo, $ingredientes, $instrucciones, $imagen)) {
+                    header('Location: index.php?ctl=verRecetas');
+                } else {
+                    $params['mensaje'] = 'Error al insertar la receta.';
+                }
+            }
+        }
+
+        require __DIR__ . '/../../web/templates/formInsertarReceta.php';
+    }
+
+    
 
 }
 ?>

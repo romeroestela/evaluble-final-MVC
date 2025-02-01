@@ -17,6 +17,10 @@
 
 <div class="container text-center my-4">
     <div class="row justify-content-center">
+        
+        <!-- Botón para ver Recetas -->
+        <a href="index.php?ctl=verRecetas" class="btn btn-info">Ver Recetas</a>
+
         <!-- Botón para registrar una comida -->
         <div class="col-md-4 mb-3">
             <a href="index.php?ctl=insertarComida" class="btn btn-lg btn-primary w-100">

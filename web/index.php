@@ -21,7 +21,11 @@ $map = array(
     'insertarActividad' => array('controller' => 'Controller', 'action' => 'insertarActividad', 'nivel_usuario' => 1),
     'verActividades' => array('controller' => 'Controller', 'action' => 'verActividades', 'nivel_usuario' => 1),
     'verComidas' => array('controller' => 'Controller', 'action' => 'verComidas', 'nivel_usuario' => 1),
-    'buscarPorFecha' => array('controller' => 'Controller', 'action' => 'buscarPorFecha', 'nivel_usuario' => 1)
+    'buscarPorFecha' => array('controller' => 'Controller', 'action' => 'buscarPorFecha', 'nivel_usuario' => 1),
+    'verTodasComidas' => array('controller' => 'Controller', 'action' => 'verTodasComidas', 'nivel_usuario' => 2),
+    'verTodasActividades' => array('controller' => 'Controller', 'action' => 'verTodasActividades', 'nivel_usuario' => 2),
+    'verRecetas' => array('controller' => 'Controller', 'action' => 'verRecetas', 'nivel_usuario' => 0),
+    'insertarReceta' => array('controller' => 'Controller', 'action' => 'insertarReceta', 'nivel_usuario' => 2)
 );
 
 // Obtener la ruta de la URL (?ctl=...)

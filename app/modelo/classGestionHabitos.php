@@ -117,6 +117,44 @@ class GestionHabitos extends Modelo {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Obtener todas las comidas de todos los usuarios
+    public function obtenerTodasComidas()
+    {
+        $consulta = "SELECT * FROM habitos_saludables.comidas";
+        $result = $this->conexion->query($consulta);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Obtener todas las actividades de todos los usuarios
+    public function obtenerTodasActividades()
+    {
+        $consulta = "SELECT * FROM habitos_saludables.actividades";
+        $result = $this->conexion->query($consulta);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function obtenerRecetas()
+    {
+        $consulta = "SELECT * FROM recetas ORDER BY fecha_publicacion DESC";
+        $result = $this->conexion->query($consulta);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function insertarReceta($titulo, $ingredientes, $instrucciones, $imagen)
+    {
+        $consulta = "INSERT INTO recetas (titulo, ingredientes, instrucciones, imagen) 
+                    VALUES (:titulo, :ingredientes, :instrucciones, :imagen)";
+        
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':titulo', $titulo);
+        $result->bindParam(':ingredientes', $ingredientes);
+        $result->bindParam(':instrucciones', $instrucciones);
+        $result->bindParam(':imagen', $imagen);
+        
+        return $result->execute();
+    }
+
+
 }
 
 ?>

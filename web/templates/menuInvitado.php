@@ -8,7 +8,7 @@
 <div class="container text-center my-2">
     <h4>¿Qué puedes hacer como invitado?</h4>
     <ul class="list-unstyled">
-        <li>✅ Leer consejos sobre alimentación y ejercicio.</li>
+        <li>✅ Ver ideas de Recetas</li>
         <li>✅ Ver ejemplos de registros de actividades.</li>
         <li>❌ No puedes guardar tu progreso personal.</li>
         <li>❌ No puedes registrar tus actividades.</li>
@@ -21,6 +21,8 @@
        Podrás acceder a tu historial de actividades y comidas, recibir estadísticas  
        y mejorar tu bienestar día a día.</p>
 </div>
+
+<a href="index.php?ctl=verRecetas" class="btn btn-info">Ver Recetas</a>
 
 <div class="container text-center">
     <h4>¡Únete ahora y mejora tu bienestar!</h4>

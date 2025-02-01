@@ -3,7 +3,12 @@ $menu = null; // Evita que se cargue menuInvitado.php
 ob_start();
 ?>
 
+<div class="text-center mt-3">
+    <small class="text-muted">Si eres administrador, usa tu nombre de usuario y contraseña asignados.</small>
+</div>       
+
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    
     <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
         <div class="text-center mb-4">
             <h2 class="text-success">Iniciar Sesión</h2>

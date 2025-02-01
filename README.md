@@ -54,24 +54,24 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
     - [x] insertarActividad.php (Formulario para insertar Actividad).
     - [x] verActividades.php (lista de actividades del usuario).
     - [x] verComidas.php (lista de comidas del usuario).
-    - [] buscar_por_fecha.php (buscar actividades y comidas por fecha).
+    - [X] buscar_por_fecha.php (buscar actividades y comidas por fecha).
 4. Plantillas especiales:
     - [X] error.php (pantalla de error).
 
 ### Seguridad
 1. Implementar validación de formularios en el lado del servidor.
-    - [ ] Validar datos de entrada.
+    - [x] Validar datos de entrada.
 2. Implementar protección contra SQL Injection.
-    - [ ] Utilizar consultas preparadas.
+    - [x] Utilizar consultas preparadas.
 3. Implementar sistema de sesiones y cookies.
-    - [ ] Crear sistema de inicio/cierre de sesión seguro.
+    - [x] Crear sistema de inicio/cierre de sesión seguro.
 
 ### Funcionalidades Adicionales
 1. Subida y gestión de imágenes.
-    - [ ] Implementar carga de fotos para perfil y comidas.
+    - [x] Implementar carga de fotos para perfil y comidas.
 2. Implementar mensajes de feedback para los usuarios.
-    - [ ] Mostrar mensajes de error.
-    - [ ] Crear pantalla genérica de error.
+    - [x] Mostrar mensajes de error.
+    - [x] Crear pantalla genérica de error.
 
 ### Estilizado y Presentación
 1. Aplicar CSS básico para el diseño.
@@ -85,15 +85,22 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 2. Revisar errores y corregirlos.
     - [ ] Corregir errores y mejorar del código.
 
-## Instalación y Uso
+
+## Extras
+- Incluir breve descripción explicando que hace la aplicación. 
+- El código incluye comentarios para facilitar su comprensión.
+
+
+# Instalación y Uso
 1. Clonar el repositorio: `git clone https://github.com/romeroestela/evaluble-final-MVC.git`
 2. Configurar la base de datos importando el archivo ` habitos_saludables.sql`
 3. Configurar las credenciales de conexión en `config/habitos_saludables.php`
 4. Ejecutar el servidor local y acceder a la aplicación
 
-## Extras
-- Incluir breve descripción explicando que hace la aplicación. 
-- El código incluye comentarios para facilitar su comprensión.
+## Configuración del Administrador
+
+Para poder acceder al usuario Administrador puedes hacerlo desde *Iniciar Sesión* y poner *Nombre de usuario = Admin*, *Contraseña= Admin*.
+
 
 ## Estela Romero Ferri
 

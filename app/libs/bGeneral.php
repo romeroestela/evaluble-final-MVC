@@ -437,7 +437,7 @@ function gestionarImagenPerfil($nombreCampo, $directorio, &$errores)
     }
 }
 
-function gestionarImagenComida($nombreCampo, $directorio, &$errores)
+function gestionarImagenComida($nombreCampo, $directorio, $errores)
 {
     // Si no existe la carpeta, crearla
     if (!file_exists($directorio)) {
@@ -469,6 +469,25 @@ function gestionarImagenComida($nombreCampo, $directorio, &$errores)
     } else {
         // Si no se ha subido imagen, retornar la imagen por defecto
         return "imagenes\default_food.jpg";
+    }
+}
+
+function gestionarImagenRecetas(string $nombreCampo, string $directorio, array &$errores)
+{
+    if (isset($_FILES[$nombreCampo]) && $_FILES[$nombreCampo]['error'] === UPLOAD_ERR_OK) {
+        $fotoTmpPath = $_FILES[$nombreCampo]['tmp_name'];
+        $fotoNombre = basename($_FILES[$nombreCampo]['name']);
+        $fotoDestino = "web/$directorio/" . $fotoNombre;
+
+        if (move_uploaded_file($fotoTmpPath, $fotoDestino)) {
+            return $fotoDestino;
+        } else {
+            $errores[] = "Error al subir la imagen.";
+            return false;
+        }
+    } else {
+        $errores[] = "La imagen es obligatoria.";
+        return false;
     }
 }
 
