@@ -10,10 +10,11 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 - GitHub (Control de versiones)
 
 ## Instalación y Uso
-1. Clonar el repositorio: `git clone https://github.com/romeroestela/evaluble-final-MVC.git` / Descargar carpeta comprimida
-2. Configurar la base de datos importando el archivo ` habitos_saludables.sql`
-3. Configurar las credenciales de conexión en `app\libs\config.php`
-4. Ejecutar el servidor local y acceder a la aplicación
+1. Descargar el proyecto: Puedes clonar el repositorio `git clone https://github.com/romeroestela/evaluble-final-MVC.git` o descargar la carpeta comprimida.
+2. Configurar la base de datos: importa el archivo ` habitos_saludables.sql` en tu base de datos para crear las tablas necesarias.
+3. Ajustar la configuración de la base de datos: Abre el archivo `app\libs\config.php` y agrega tus detalles de conexión (como el nombre de la base de datos, usuario, puerto y contraseña).
+4. Iniciar el servidor y acceder: Ejecuta el servidor local en tu máquina y abre la aplicación en tu navegador para empezar a usarla.
+
 
 ### Configuración del Administrador
 Para poder acceder al usuario Administrador puedes hacerlo desde *Iniciar Sesión* y poner *Nombre de usuario = Admin*, *Contraseña= Admin*.
