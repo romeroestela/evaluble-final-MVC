@@ -450,12 +450,11 @@ function gestionarImagenComida($nombreCampo, $directorio, &$errores)
         $fotoNombre = time() . "_" . basename($_FILES[$nombreCampo]['name']); // Evitar nombres duplicados
         $fotoDestino = $directorio . "/" . $fotoNombre;
 
-        // Validar tipo MIME real del archivo
-        $mimePermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
-        $mimeType = mime_content_type($fotoTmpPath); 
+        $extensionesPermitidas = ['jpg', 'jpeg', 'png'];
+        $extension = strtolower(pathinfo($fotoNombre, PATHINFO_EXTENSION)); 
 
         // Si el archivo no es una imagen válida, se lanza un error y no se sube la imagen por defecto
-        if (!in_array($mimeType, $mimePermitidos)) {
+        if (!in_array($extension, $extensionesPermitidas)) {
             $errores[] = "Formato de imagen no permitido. Usa JPG, PNG o JPEG.";
             return false;
         }
@@ -490,11 +489,10 @@ function gestionarImagenReceta($nombreCampo, $directorio, array &$errores)
     $fotoNombre = time() . "_" . basename($_FILES[$nombreCampo]['name']); // Evitar nombres duplicados
     $fotoDestino = $directorio . "/" . $fotoNombre;
 
-    // Validar tipo MIME real del archivo (no solo la extensión)
-    $mimePermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
-    $mimeType = mime_content_type($fotoTmpPath); 
+    $extensionesPermitidas = ['jpg', 'jpeg', 'png'];
+    $extension = strtolower(pathinfo($fotoNombre, PATHINFO_EXTENSION));  
 
-    if (!in_array($mimeType, $mimePermitidos)) {
+    if (!in_array($extension, $extensionesPermitidas)) {
         $errores[] = "Formato de imagen no permitido. Usa JPG, JPEG o PNG.";
         return false;
     }
