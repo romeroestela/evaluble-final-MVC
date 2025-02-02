@@ -19,9 +19,7 @@ class Controller
     {
 
         $params = array(
-            'mensaje' => 'Bienvenido a tu gestor de hábitos saludables',
-            'mensaje2' => 'Registra tus actividades y comidas para mejorar tu salud',
-            'fecha' => date('d-m-Y')
+            'fecha' => date('Y-d-m')
         );
         $menu = 'menuHome.php';
 
@@ -31,7 +29,7 @@ class Controller
         require __DIR__ . '/../../web/templates/inicio.php';
     }
 
-    // Página principal
+    // Página principal para los usuarios registrados
     public function inicio()
     {
         $params = array(
@@ -161,7 +159,10 @@ class Controller
                  } catch (Exception $e) {
                      error_log($e->getMessage(), 3, "../app/log/logException.txt");
                      header('Location: index.php?ctl=error');
-                 }
+                 } catch (Error $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+                    header('Location: index.php?ctl=error');
+                }
              } else {
                  $params = array(
                      'nombre' => $nombre,
@@ -253,6 +254,9 @@ class Controller
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+            header('Location: index.php?ctl=error');
         }
     }
 
@@ -334,6 +338,9 @@ class Controller
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+            header('Location: index.php?ctl=error');
         }
     }
 
@@ -374,6 +381,9 @@ class Controller
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+            header('Location: index.php?ctl=error');
         }
     }
 
@@ -399,6 +409,9 @@ class Controller
             error_log($e->getMessage(), 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
             exit();
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+            header('Location: index.php?ctl=error');
         }
 
         require __DIR__ . '/../../web/templates/verTodasComidas.php';
@@ -417,6 +430,9 @@ class Controller
             error_log($e->getMessage(), 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
             exit();
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+            header('Location: index.php?ctl=error');
         }
 
         require __DIR__ . '/../../web/templates/verTodasActividades.php';
@@ -432,46 +448,49 @@ class Controller
 
             require __DIR__ . '/../../web/templates/verRecetas.php';
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logExceptio.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
             header('Location: index.php?ctl=error');
         }
     }
 
     public function insertarReceta()
-{
-    if ($_SESSION['nivel_usuario'] != 2) {
-        header("location:index.php?ctl=home");
-        exit;
-    }
-
-    $params = ['titulo' => '', 'ingredientes' => '', 'instrucciones' => ''];
-    $errores = [];
-
-    if (isset($_POST['bInsertarReceta'])) {
-        $titulo = recoge('titulo');
-        $ingredientes = recoge('ingredientes');
-        $instrucciones = recoge('instrucciones');
-        $imagenes_recetas = gestionarImagenReceta('imagenes_recetas', "imagenes_recetas", $errores); // Aquí corregido
-
-        cTexto($titulo, "Título", $errores);
-        cTexto($ingredientes, "Ingredientes", $errores);
-        cTexto($instrucciones, "Instrucciones", $errores);
-
-        if (empty($errores)) {
-            $m = new GestionHabitos();
-            if ($m->insertarReceta($titulo, $ingredientes, $instrucciones, $imagenes_recetas)) {
-                header('Location: index.php?ctl=verRecetas');
-                exit;
-            } else {
-                $params['mensaje'] = 'Error al insertar la receta.';
-            }
-        } else {
-            $params['mensaje'] = 'Revisa los errores en el formulario.';
+    {
+        if ($_SESSION['nivel_usuario'] != 2) {
+            header("location:index.php?ctl=home");
+            exit;
         }
-    }
 
-    require __DIR__ . '/../../web/templates/formInsertarReceta.php';
-}
+        $params = ['titulo' => '', 'ingredientes' => '', 'instrucciones' => ''];
+        $errores = [];
+
+        if (isset($_POST['bInsertarReceta'])) {
+            $titulo = recoge('titulo');
+            $ingredientes = recoge('ingredientes');
+            $instrucciones = recoge('instrucciones');
+            $imagenes_recetas = gestionarImagenReceta('imagenes_recetas', "imagenes_recetas", $errores); // Aquí corregido
+
+            cTexto($titulo, "Título", $errores);
+            cTexto($ingredientes, "Ingredientes", $errores);
+            cTexto($instrucciones, "Instrucciones", $errores);
+
+            if (empty($errores)) {
+                $m = new GestionHabitos();
+                if ($m->insertarReceta($titulo, $ingredientes, $instrucciones, $imagenes_recetas)) {
+                    header('Location: index.php?ctl=verRecetas');
+                    exit;
+                } else {
+                    $params['mensaje'] = 'Error al insertar la receta.';
+                }
+            } else {
+                $params['mensaje'] = 'Revisa los errores en el formulario.';
+            }
+        }
+
+        require __DIR__ . '/../../web/templates/formInsertarReceta.php';
+    }
 
 
     

@@ -468,8 +468,7 @@ function gestionarImagenComida($nombreCampo, $directorio, &$errores)
             return false;
         }
     } else {
-        $errores[] = "La imagen es obligatoria.";
-        return false;
+        return "imagenes\default_food.jpg";
     }
 }
 

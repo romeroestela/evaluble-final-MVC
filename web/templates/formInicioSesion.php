@@ -3,20 +3,20 @@ $menu = null; // Evita que se cargue menuInvitado.php
 ob_start();
 ?>
 
-<div class="text-center mt-3">
-    <small class="text-muted">Si eres administrador, usa tu nombre de usuario y contraseña asignados.</small>
-</div>       
+<!-- Mensaje para administradores (encima del formulario) -->
+<div class="text-center mb-3 text-muted">
+    <small>Si eres administrador, usa tu nombre de usuario y contraseña asignados.</small>
+</div>
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    
-    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+<div class="container d-flex justify-content-center align-items-center min-vh-50">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%; border-radius: 15px;">
         <div class="text-center mb-4">
             <h2 class="text-success">Iniciar Sesión</h2>
             <p class="text-muted">Accede a tu cuenta para gestionar tus hábitos saludables</p>
         </div>
 
         <!-- Mensajes de error -->
-        <?php if(isset($params['mensaje'])): ?>
+        <?php if (isset($params['mensaje'])): ?>
             <div class="alert alert-danger text-center">
                 <?php echo $params['mensaje']; ?>
             </div>

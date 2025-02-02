@@ -40,9 +40,8 @@
 
         <button type="submit" name="bInsertarReceta" class="btn btn-success">Añadir Receta</button>
         
-        <a href="index.php?ctl=verRecetas" class="btn btn-info">Ver Recetas</a>
+        <a href="index.php?ctl=verRecetas" class="btn btn-warning">Ver Recetas</a>
         <?php include 'volverMenu.php'; ?>
-
     </form>
 </div>
 

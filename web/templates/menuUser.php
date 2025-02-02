@@ -16,20 +16,26 @@
 
 
 <div class="container text-center my-4">
-    <div class="row justify-content-center">
-        
-        <!-- Botón para ver Recetas -->
-        <a href="index.php?ctl=verRecetas" class="btn btn-info">Ver Recetas</a>
+    <!-- Fila para centrar el botón "Ver Recetas" -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-1">
+            <a href="index.php?ctl=verRecetas" class="btn btn-lg btn-success w-100">
+                <i class="fas fa-utensils"></i> Ver Recetas
+            </a>
+        </div>
+    </div>
 
+    <!-- Fila para los demás botones -->
+    <div class="row justify-content-center">
         <!-- Botón para registrar una comida -->
-        <div class="col-md-4 mb-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
             <a href="index.php?ctl=insertarComida" class="btn btn-lg btn-primary w-100">
                 <i class="fas fa-utensils"></i> Registrar Comida
             </a>
         </div>
 
         <!-- Botón para registrar una actividad -->
-        <div class="col-md-4 mb-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
             <a href="index.php?ctl=insertarActividad" class="btn btn-lg btn-primary w-100">
                 <i class="fas fa-running"></i> Registrar Actividad
             </a>
@@ -38,14 +44,14 @@
 
     <div class="row justify-content-center">
         <!-- Ver comidas registradas -->
-        <div class="col-md-4 mb-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
             <a href="index.php?ctl=verComidas" class="btn btn-lg btn-success w-100">
                 <i class="fas fa-apple-alt"></i> Ver Comidas
             </a>
         </div>
 
         <!-- Ver actividades registradas -->
-        <div class="col-md-4 mb-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
             <a href="index.php?ctl=verActividades" class="btn btn-lg btn-success w-100">
                 <i class="fas fa-dumbbell"></i> Ver Actividades
             </a>
@@ -54,17 +60,18 @@
 
     <div class="row justify-content-center">
         <!-- Buscar por fecha -->
-        <div class="col-md-4 mb-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
             <a href="index.php?ctl=buscarPorFecha" class="btn btn-lg btn-warning w-100">
                 <i class="fas fa-calendar-alt"></i> Buscar por Fecha
             </a>
         </div>
 
         <!-- Cerrar sesión -->
-        <div class="col-md-4 mb-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
             <a href="index.php?ctl=salir" class="btn btn-lg btn-danger w-100">
                 <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
             </a>
         </div>
     </div>
 </div>
+
