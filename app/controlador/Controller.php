@@ -6,14 +6,15 @@ class Controller
     private function cargaMenu()
     {
         if ($_SESSION['nivel_usuario'] == 0) {
-            return 'menuInvitado.php';
+            return 'menuInvitado.php'; // Menú para usuarios no registrados
         } else if ($_SESSION['nivel_usuario'] == 1) {
-            return 'menuUser.php';
+            return 'menuUser.php'; // Menú para usuarios normales
         } else if ($_SESSION['nivel_usuario'] == 2) {
-            return 'menuAdmin.php';
+            return 'menuAdmin.php'; // Menú para administradores
         }
     }
 
+    // Página de inicio pública
     public function home()
     {
 
@@ -41,7 +42,7 @@ class Controller
         require __DIR__ . '/../../web/templates/inicio.php';
     }
 
-    //Funcion para salir de la sesión
+    // Cierra la sesión del usuario y lo redirige a la página principal
     public function salir()
     {
         session_destroy();
@@ -49,7 +50,7 @@ class Controller
         header("location:index.php?ctl=home");
     }
 
-    //Funcion para mostrar el error en error.php
+    // Muestra una pantalla de error cuando ocurre un problema
     public function error()
     {
 
@@ -58,6 +59,7 @@ class Controller
         require __DIR__ . '/../../web/templates/error.php';
     }
 
+     // Función para iniciar sesión de usuarios registrados
     public function iniciarSesion()
     {
         try {
@@ -67,22 +69,21 @@ class Controller
             );
             $menu = $this->cargaMenu();
 
+            // Si el usuario ya está logueado, lo redirige al inicio
             if ($_SESSION['nivel_usuario'] > 0) {
                 header("location:index.php?ctl=inicio");
             }
-            if (isset($_POST['bIniciarSesion'])) { // Nombre del boton del formulario
+            // Verifica si se ha enviado el formulario de inicio de sesión
+            if (isset($_POST['bIniciarSesion'])) {
                 $nombreUsuario = recoge('nombreUsuario');
                 $contrasenya = recoge('contrasenya');
-
-                // Comprobar campos formulario. Aqui va la validación con las funciones de bGeneral   
-                if (cUser($nombreUsuario, "nombreUsuario", $params)) {
-                    // Si no ha habido problema creo modelo y hago consulta                    
+   
+                if (cUser($nombreUsuario, "nombreUsuario", $params)) {                    
                     $m = new GestionHabitos();
                     if ($usuario = $m->consultarUsuario($nombreUsuario)) {
                         // Compruebo si el password es correcto
                         if (comprobarhash($contrasenya, $usuario['contrasenya'])) {
-                            // Obtenemos el resto de datos
-
+                            // Almacena los datos del usuario en la sesión
                             $_SESSION['idUser'] = $usuario['idUser'];
                             $_SESSION['nombreUsuario'] = $usuario['nombreUsuario'];
                             $_SESSION['nivel_usuario'] = $usuario['nivel_usuario'];
@@ -115,11 +116,12 @@ class Controller
     }
 
 
-     // Formulario de registro
+    // Función para registrar un usuario nuevo
      public function registro()
      {
          $menu = $this->cargaMenu();
- 
+
+        // Redirigir si el usuario ya está logueado
          if ($_SESSION['nivel_usuario'] > 0) {
              header("location:index.php?ctl=inicio");
          }
@@ -141,7 +143,7 @@ class Controller
  
              $foto_perfil = gestionarImagenPerfil('foto_perfil', "imagenes_profile", $errores);
  
-             // Validaciones
+             // Validaciones de los datos ingresados
              cTexto($nombre, "nombre", $errores);
              cTexto($apellido, "apellido", $errores);
              cUser($nombreUsuario, "nombreUsuario", $errores);
@@ -436,37 +438,41 @@ class Controller
     }
 
     public function insertarReceta()
-    {
-        if ($_SESSION['nivel_usuario'] != 2) {
-            header("location:index.php?ctl=home");
-            exit;
-        }
-
-        $params = ['titulo' => '', 'ingredientes' => '', 'instrucciones' => ''];
-        $errores = [];
-
-        if (isset($_POST['bInsertarReceta'])) {
-            $titulo = recoge('titulo');
-            $ingredientes = recoge('ingredientes');
-            $instrucciones = recoge('instrucciones');
-            $imagen = gestionarImagenRecetas('imagen', "imagenes_recetas", $errores);
-
-            cTexto($titulo, "Título", $errores);
-            cTexto($ingredientes, "Ingredientes", $errores);
-            cTexto($instrucciones, "Instrucciones", $errores);
-
-            if (empty($errores)) {
-                $m = new GestionHabitos();
-                if ($m->insertarReceta($titulo, $ingredientes, $instrucciones, $imagen)) {
-                    header('Location: index.php?ctl=verRecetas');
-                } else {
-                    $params['mensaje'] = 'Error al insertar la receta.';
-                }
-            }
-        }
-
-        require __DIR__ . '/../../web/templates/formInsertarReceta.php';
+{
+    if ($_SESSION['nivel_usuario'] != 2) {
+        header("location:index.php?ctl=home");
+        exit;
     }
+
+    $params = ['titulo' => '', 'ingredientes' => '', 'instrucciones' => ''];
+    $errores = [];
+
+    if (isset($_POST['bInsertarReceta'])) {
+        $titulo = recoge('titulo');
+        $ingredientes = recoge('ingredientes');
+        $instrucciones = recoge('instrucciones');
+        $imagenes_recetas = gestionarImagenReceta('imagenes_recetas', "imagenes_recetas", $errores); // Aquí corregido
+
+        cTexto($titulo, "Título", $errores);
+        cTexto($ingredientes, "Ingredientes", $errores);
+        cTexto($instrucciones, "Instrucciones", $errores);
+
+        if (empty($errores)) {
+            $m = new GestionHabitos();
+            if ($m->insertarReceta($titulo, $ingredientes, $instrucciones, $imagenes_recetas)) {
+                header('Location: index.php?ctl=verRecetas');
+                exit;
+            } else {
+                $params['mensaje'] = 'Error al insertar la receta.';
+            }
+        } else {
+            $params['mensaje'] = 'Revisa los errores en el formulario.';
+        }
+    }
+
+    require __DIR__ . '/../../web/templates/formInsertarReceta.php';
+}
+
 
     
 

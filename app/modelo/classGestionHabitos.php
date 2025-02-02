@@ -135,21 +135,21 @@ class GestionHabitos extends Modelo {
 
     public function obtenerRecetas()
     {
-        $consulta = "SELECT * FROM recetas ORDER BY fecha_publicacion DESC";
+        $consulta = "SELECT * FROM habitos_saludables.recetas ORDER BY fecha_publicacion DESC";
         $result = $this->conexion->query($consulta);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insertarReceta($titulo, $ingredientes, $instrucciones, $imagen)
+    public function insertarReceta($titulo, $ingredientes, $instrucciones, $imagenes_recetas)
     {
-        $consulta = "INSERT INTO recetas (titulo, ingredientes, instrucciones, imagen) 
-                    VALUES (:titulo, :ingredientes, :instrucciones, :imagen)";
+        $consulta = "INSERT INTO habitos_saludables.recetas (titulo, ingredientes, instrucciones, imagenes_recetas) 
+                    VALUES (:titulo, :ingredientes, :instrucciones, :imagenes_recetas)";
         
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':titulo', $titulo);
         $result->bindParam(':ingredientes', $ingredientes);
         $result->bindParam(':instrucciones', $instrucciones);
-        $result->bindParam(':imagen', $imagen);
+        $result->bindParam(':imagenes_recetas', $imagenes_recetas);
         
         return $result->execute();
     }

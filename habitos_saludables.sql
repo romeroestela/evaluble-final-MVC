@@ -91,11 +91,11 @@ CREATE TABLE `recetas` (
     `titulo` VARCHAR(255) NOT NULL,
     `ingredientes` TEXT NOT NULL,
     `instrucciones` TEXT NOT NULL,
-    `imagen` VARCHAR(255) NOT NULL,  -- La imagen es obligatoria
+    `imagenes_recetas` VARCHAR(255) NOT NULL,  -- La imagen es obligatoria
     `fecha_publicacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO recetas (titulo, ingredientes, instrucciones, imagen) VALUES 
+INSERT INTO recetas (titulo, ingredientes, instrucciones, imagenes_recetas) VALUES 
 ('Ensalada César', 'Lechuga, pollo, croutones, queso parmesano, aderezo César', 
 '1. Cortar la lechuga y el pollo. 2. Añadir croutones y queso. 3. Mezclar con aderezo.', 
 'imagenes_recetas/ensalada_cesar.jpg'),

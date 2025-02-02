@@ -9,6 +9,29 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 - HTML, CSS
 - GitHub (Control de versiones)
 
+## Instalación y Uso
+1. Clonar el repositorio: `git clone https://github.com/romeroestela/evaluble-final-MVC.git`
+2. Configurar la base de datos importando el archivo ` habitos_saludables.sql`
+3. Configurar las credenciales de conexión en `config/habitos_saludables.php`
+4. Ejecutar el servidor local y acceder a la aplicación
+
+### Configuración del Administrador
+Para poder acceder al usuario Administrador puedes hacerlo desde *Iniciar Sesión* y poner *Nombre de usuario = Admin*, *Contraseña= Admin*.
+
+# **Estructura del Proyecto**  
+
+Este proyecto sigue el patrón **MVC (Modelo - Vista - Controlador)** para organizar el código de manera clara y estructurada.  
+
+## **Controlador (Controller.php)** 
+
+-  **Carga el menú adecuado** según el nivel del usuario (invitado, usuario normal o administrador).  
+-  **Maneja la autenticación**, permitiendo a los usuarios iniciar y cerrar sesión.  
+-  **Registra nuevas cuentas** y almacena la foto de perfil.  
+-  **Gestiona la inserción y visualización de datos**, como comidas y actividades registradas.  
+-  **Administra recetas**, permitiendo a los administradores agregar contenido para todos los usuarios.  
+
+
+
 ## Lista de Tareas
 
 ### Configuración Inicial
@@ -81,9 +104,9 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 
 ### Pruebas
 1. Probar la aplicación con diferentes tipos de usuarios.
-    - [ ] Crear cuentas de prueba.
+    - [x] Crear cuentas de prueba.
 2. Revisar errores y corregirlos.
-    - [ ] Corregir errores y mejorar del código.
+    - [x] Corregir errores y mejorar del código.
 
 
 ## Extras
@@ -91,15 +114,6 @@ Esta aplicación web se desarrollará utilizando la arquitectura MVC y acceso a 
 - El código incluye comentarios para facilitar su comprensión.
 
 
-# Instalación y Uso
-1. Clonar el repositorio: `git clone https://github.com/romeroestela/evaluble-final-MVC.git`
-2. Configurar la base de datos importando el archivo ` habitos_saludables.sql`
-3. Configurar las credenciales de conexión en `config/habitos_saludables.php`
-4. Ejecutar el servidor local y acceder a la aplicación
-
-## Configuración del Administrador
-
-Para poder acceder al usuario Administrador puedes hacerlo desde *Iniciar Sesión* y poner *Nombre de usuario = Admin*, *Contraseña= Admin*.
 
 
 ## Estela Romero Ferri

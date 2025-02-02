@@ -10,7 +10,7 @@
             <?php foreach ($params['recetas'] as $receta): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card shadow">
-                        <img src="<?php echo htmlspecialchars($receta['imagen']); ?>" class="card-img-top" alt="Receta">
+                        <img src="<?php echo htmlspecialchars($receta['imagenes_recetas']); ?>" class="card-img-top" alt="Receta">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($receta['titulo']); ?></h5>
                             <p class="card-text"><strong>Ingredientes:</strong> <?php echo nl2br(htmlspecialchars($receta['ingredientes'])); ?></p>
