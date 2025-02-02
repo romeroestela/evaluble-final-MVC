@@ -1,3 +1,4 @@
+
 <?php
 $menu = null; // Evita que se cargue menuInvitado.php
 ob_start(); 

@@ -68,7 +68,6 @@ ob_start();
             </div>
         </form>
 
-        <!-- Enlaces adicionales -->
         <div class="text-center mt-3">
             <a href="index.php?ctl=iniciarSesion" class="text-decoration-none">Ya tengo una cuenta</a>
         </div>

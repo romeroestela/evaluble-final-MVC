@@ -1,3 +1,0 @@
-SQLSTATE[42S02]: Base table or view not found: 1146 Table 'habitos_saludables.recetas' doesn't exist0.49711500 1738412717
-SQLSTATE[42S02]: Base table or view not found: 1146 Table 'habitos_saludables.recetas' doesn't exist0.45535900 1738412762
-SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)0.36906600 1738501942

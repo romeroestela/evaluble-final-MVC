@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+
+<?php ob_start(); 
+include 'headerUser.php'
+?>
 
 <div class="container text-center py-4">
     <div class="col-md-12">
@@ -14,9 +17,12 @@
     <?php endforeach; ?>
 </div>
 
-<div class="container-fluid text-center">
-    <div class="container">
-        <h2>Registrar Comida</h2>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+    <div class="text-center mb-2">
+        <h2 class="text-success">Registrar Comida</h2>
+    </div>
+
         <form action="index.php?ctl=insertarComida" method="post" enctype="multipart/form-data">
             <!-- Nombre de la comida -->
             <div class="mb-3">
@@ -42,7 +48,10 @@
                 <input type="date" name="fecha" class="form-control" required>
             </div>
 
-            <button type="submit" name="bInsertarComida" class="btn btn-success">Registrar Comida</button>
+            <div class="text-center mt-3">
+                <button type="submit" name="bInsertarComida" class="btn btn-success">Registrar Comida</button>
+            </div>
+            
             <?php include 'volverMenu.php'; ?>
 
 

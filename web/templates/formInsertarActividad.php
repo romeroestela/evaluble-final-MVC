@@ -1,8 +1,11 @@
-<?php ob_start(); ?>
+
+<?php ob_start(); 
+include 'headerUser.php'
+?>
 
 <div class="container text-center py-4">
     <div class="col-md-12">
-        <?php if(isset($params['mensaje'])): ?>
+        <?php if (isset($params['mensaje'])): ?>
             <b><span style="color: rgba(200, 119, 119, 1);"><?php echo $params['mensaje']; ?></span></b>
         <?php endif; ?>
     </div>
@@ -14,12 +17,15 @@
     <?php endforeach; ?>
 </div>
 
-<div class="container-fluid text-center">
-    <div class="container">
-        <h2>Registrar Actividad</h2>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 class="text-success">Registrar Actividad</h2>
+    </div>
+        
         <form action="index.php?ctl=insertarActividad" method="post" enctype="multipart/form-data">
             
-        <!-- Tipo de Actividad -->
+            <!-- Tipo de Actividad -->
             <div class="mb-3">
                 <label for="tipo" class="form-label">Tipo de la actividad</label>
                 <input type="text" name="tipo" class="form-control" placeholder="Carrera" required>
@@ -27,30 +33,33 @@
 
             <!-- Duración -->
             <div class="mb-3">
-                <label for="duracion" class="form-label">Duración</label>
+                <label for="duracion" class="form-label">Duración (en minutos)</label>
                 <input type="number" name="duracion" class="form-control" placeholder="20" required>
             </div>
 
             <!-- Calorías -->
             <div class="mb-3">
-                <label for="calorias" class="form-label">Calorías</label>
+                <label for="calorias" class="form-label">Calorías quemadas</label>
                 <input type="number" name="calorias" class="form-control" placeholder="200" required>
             </div>
 
-        
             <!-- Fecha de la Actividad -->
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha de la Actividad</label>
                 <input type="date" name="fecha" class="form-control" required>
             </div>
 
-            <button type="submit" name="bInsertarActividad" class="btn btn-success">Registrar Actividad</button>
+            <div class="d-grid">
+                <button type="submit" name="bInsertarActividad" class="btn btn-success">Registrar Actividad</button>
+            </div>
+
             <?php include 'volverMenu.php'; ?>
 
         </form>
     </div>
 </div>
 
-<?php $contenido = ob_get_clean() ?>
-
-<?php include 'layout.php' ?>
+<?php 
+$contenido = ob_get_clean();
+include 'layout.php'; 
+?>

@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+
+<?php ob_start(); 
+include 'headerUser.php'
+?>
 
 <div class="container py-4">
     <h2 class="text-center mb-4">Buscar Registros por Fecha</h2>

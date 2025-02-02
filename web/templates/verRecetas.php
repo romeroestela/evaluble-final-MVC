@@ -15,10 +15,6 @@
                             <h5 class="card-title"><?php echo htmlspecialchars($receta['titulo']); ?></h5>
                             <p class="card-text"><strong>Ingredientes:</strong> <?php echo nl2br(htmlspecialchars($receta['ingredientes'])); ?></p>
                             <p class="card-text"><strong>Instrucciones:</strong> <?php echo nl2br(htmlspecialchars($receta['instrucciones'])); ?></p>
-                            <!-- Para asegurarse de que el texto no desborde la tarjeta -->
-                            <div class="mt-auto">
-                                <a href="#" class="btn btn-info btn-sm">Ver receta</a>
-                            </div>
                         </div>
                     </div>
                 </div>

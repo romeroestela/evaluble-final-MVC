@@ -1,3 +1,4 @@
+
 <?php
 if (!isset($_SESSION['nivel_usuario']) || $_SESSION['nivel_usuario'] != 2) {
     header("Location: index.php?ctl=home");

@@ -3,7 +3,7 @@
     <!-- Título y bienvenida -->
     <h2 class="display-4 text-success mb-3">Bienvenido, Invitado</h2>
     <p class="lead mb-1">
-        Aquí puedes explorar información sobre hábitos saludables,  
+        Aquí puedes explorar recetas varias,  
         pero para llevar un control personalizado, ¡regístrate!
     </p>
 </div>

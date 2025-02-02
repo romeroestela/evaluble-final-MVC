@@ -85,6 +85,8 @@ class Controller
                             $_SESSION['idUser'] = $usuario['idUser'];
                             $_SESSION['nombreUsuario'] = $usuario['nombreUsuario'];
                             $_SESSION['nivel_usuario'] = $usuario['nivel_usuario'];
+                            $_SESSION['foto_perfil'] = $usuario['foto_perfil'];
+                            
 
                             header('Location: index.php?ctl=inicio');
                         }
@@ -104,7 +106,7 @@ class Controller
                 }
             }
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logExceptio.txt");
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
         } catch (Error $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
@@ -448,7 +450,7 @@ class Controller
 
             require __DIR__ . '/../../web/templates/verRecetas.php';
         } catch (Exception $e) {
-            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logExceptio.txt");
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
             header('Location: index.php?ctl=error');
         } catch (Error $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
@@ -458,39 +460,67 @@ class Controller
 
     public function insertarReceta()
     {
+        // Verificar si el usuario tiene permisos de administrador
         if ($_SESSION['nivel_usuario'] != 2) {
             header("location:index.php?ctl=home");
             exit;
         }
 
-        $params = ['titulo' => '', 'ingredientes' => '', 'instrucciones' => ''];
+        $params = array(
+            'titulo' => '', 
+            'ingredientes' => '', 
+            'instrucciones' => ''
+        );
+
         $errores = [];
 
-        if (isset($_POST['bInsertarReceta'])) {
-            $titulo = recoge('titulo');
-            $ingredientes = recoge('ingredientes');
-            $instrucciones = recoge('instrucciones');
-            $imagenes_recetas = gestionarImagenReceta('imagenes_recetas', "imagenes_recetas", $errores); // Aquí corregido
+        try {
+            if (isset($_POST['bInsertarReceta'])) {
+                // Recoger los datos del formulario
+                $titulo = recoge('titulo');
+                $ingredientes = recoge('ingredientes');
+                $instrucciones = recoge('instrucciones');
+                $imagenes_recetas = gestionarImagenReceta('imagenes_recetas', "imagenes_recetas", $errores);
 
-            cTexto($titulo, "Título", $errores);
-            cTexto($ingredientes, "Ingredientes", $errores);
-            cTexto($instrucciones, "Instrucciones", $errores);
+                // Validaciones
+                cTexto($titulo, "Título", $errores);
+                cTexto($ingredientes, "Ingredientes", $errores);
+                cTexto($instrucciones, "Instrucciones", $errores);
 
-            if (empty($errores)) {
-                $m = new GestionHabitos();
-                if ($m->insertarReceta($titulo, $ingredientes, $instrucciones, $imagenes_recetas)) {
-                    header('Location: index.php?ctl=verRecetas');
-                    exit;
+                if (empty($errores)) {
+                    $m = new GestionHabitos();
+                    if ($m->insertarReceta($titulo, $ingredientes, $instrucciones, $imagenes_recetas)) {
+                        header('Location: index.php?ctl=verRecetas');
+                        exit;
+                    } else {
+                        $params['mensaje'] = 'Error al insertar la receta.';
+                        $params = array(
+                            'titulo' => $titulo, 
+                            'ingredientes' => $ingredientes, 
+                            'instrucciones' => $instrucciones
+                        );
+                    }
                 } else {
-                    $params['mensaje'] = 'Error al insertar la receta.';
+                    $params = array(
+                        'titulo' => $titulo, 
+                        'ingredientes' => $ingredientes, 
+                        'instrucciones' => $instrucciones
+                    );
+            
+                    $params['mensaje'] = 'Revisa los errores en el formulario.';
                 }
-            } else {
-                $params['mensaje'] = 'Revisa los errores en el formulario.';
             }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logException.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+            header('Location: index.php?ctl=error');
         }
 
         require __DIR__ . '/../../web/templates/formInsertarReceta.php';
     }
+
 
 
     

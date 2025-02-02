@@ -47,23 +47,26 @@ if (isset($_GET['ctl'])) {
 $controlador = $map[$ruta];
 
 // Ejecutar la acción del controlador
-if (method_exists($controlador['controller'], $controlador['action'])) {
+if (method_exists($controlador['controller'], $controlador['action'])) { // Verifica si la acción especificada por la ruta existe en el controlador
     if (!isset($_SESSION['nivel_usuario'])) {
-        $_SESSION['nivel_usuario'] = 0; // Usuario invitado por defecto
+        $_SESSION['nivel_usuario'] = 0; // Usuario invitado por defecto si no está definido el nivel de usuario
     }
 
     if ($controlador['nivel_usuario'] <= $_SESSION['nivel_usuario']) {
+        // Comprueba si el nivel de usuario es suficiente para acceder a la acción
         call_user_func(array(
-            new $controlador['controller'],
-            $controlador['action']
+            new $controlador['controller'], // Crea una nueva instancia del controlador
+            $controlador['action'] // Llama a la acción especificada
         ));
     }else{
+        // Si el nivel de usuario no es suficiente, redirige al inicio
         call_user_func(array(
             new $controlador['controller'],
-            'inicio'
+            'inicio'  // Llama a la acción de inicio en el controlador
         )); 
     }
 } else {
+      // Si la acción no existe en el controlador, muestra un error 404
     header('Status: 404 Not Found');
     echo '<html><body><h1>Error 404: El controlador <i>' .
         $controlador['controller'] .

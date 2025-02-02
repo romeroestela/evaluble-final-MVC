@@ -79,8 +79,8 @@ CREATE TABLE `comidas` (
 -- Insertar el usuario Admin
 --
 
-INSERT INTO `usuarios` (`idUser`, `nombre`, `apellido`, `nombreUsuario`, `contrasenya`, `nivel_usuario`, `foto_perfil`) 
-VALUES (NULL, 'Admin', 'Admin', 'Admin', '$2y$10$VXc8bOhO5XSCbKY73XYwGuYhTbAcetq3gy.EYqqQ0hZ5jthSfb6pO', '2', 'imagenes/default_admin.jpg')
+INSERT INTO `usuarios` (`nombre`, `apellido`, `nombreUsuario`, `contrasenya`, `nivel_usuario`, `foto_perfil`) 
+VALUES ('Admin', 'Admin', 'Admin', '$2y$10$VXc8bOhO5XSCbKY73XYwGuYhTbAcetq3gy.EYqqQ0hZ5jthSfb6pO', 2, 'imagenes/default_admin.jpg');
 
 --
 -- Estructura de tabla para la tabla `recetas`
@@ -91,13 +91,12 @@ CREATE TABLE `recetas` (
     `titulo` VARCHAR(255) NOT NULL,
     `ingredientes` TEXT NOT NULL,
     `instrucciones` TEXT NOT NULL,
-    `imagenes_recetas` VARCHAR(255) NOT NULL,  -- La imagen es obligatoria
-    `fecha_publicacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    `imagenes_recetas` VARCHAR(255) NOT NULL
 );
 
-INSERT INTO recetas (titulo, ingredientes, instrucciones, imagenes_recetas) VALUES 
-('Ensalada César', 'Lechuga, pollo, croutones, queso parmesano, aderezo César', 
-'1. Cortar la lechuga y el pollo. 2. Añadir croutones y queso. 3. Mezclar con aderezo.', 
+INSERT INTO `recetas` (`titulo`, `ingredientes`, `instrucciones`, `imagenes_recetas`) VALUES 
+('Ensalada César', 'Lechuga, pollo, queso parmesano, aderezo César', 
+'1. Cortar la lechuga y el pollo. 2. Añadir el queso. 3. Mezclar con aderezo.', 
 'imagenes_recetas/ensalada_cesar.jpg'),
 
 ('Batido de Fresas', 'Fresas, leche, miel, yogur', 

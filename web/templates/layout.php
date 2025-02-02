@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,7 +20,6 @@
 	if (isset($menu) && $menu !== null) {
         include $menu;
     }
-    
     ?>
 
     <!-- Contenido dinámico -->
