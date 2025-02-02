@@ -417,7 +417,8 @@ function gestionarImagenPerfil($nombreCampo, $directorio, &$errores)
 
         // Validar formato de imagen
         $extensionesPermitidas = ['jpg', 'jpeg', 'png'];
-        $extension = strtolower(pathinfo($fotoNombre, PATHINFO_EXTENSION));
+        // Obtenemos la extensión del archivo de la imagen convertida a minúsculas, para evitar problemas con mayúsculas y minúsculas.
+        $extension = strtolower(pathinfo($fotoNombre, PATHINFO_EXTENSION)); 
 
         if (!in_array($extension, $extensionesPermitidas)) {
             $errores[] = "Formato de imagen no permitido. Usa JPG, PNG o GIF.";
